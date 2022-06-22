@@ -115,6 +115,6 @@ model = postProcessModel(model);
 
 end
 
-function I = boxInertia(mass, x)
+function I = boxInertia(mass, x) % inertia for modeling as box of mass m and lengths x with uniform density
     I = (norm(x)^2*eye(3) - diag(x.^2))*mass/12;
 end

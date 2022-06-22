@@ -1,4 +1,4 @@
-function [model, graphics] = Arm3LinkModel()
+function [model, graphics] = Cheetah3LegModel()
 
 % This function creates both the rigid body model struct and a graphics
 % cell array that specifies the cheetah 3 model
@@ -115,6 +115,6 @@ model = postProcessModel(model);
 
 end
 
-function I = boxInertia(mass, x)
+function I = boxInertia(mass, x) % inertia for modeling as box of mass m and lengths x with uniform density
     I = (norm(x)^2*eye(3) - diag(x.^2))*mass/12;
 end

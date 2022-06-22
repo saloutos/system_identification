@@ -47,6 +47,9 @@ if regenerate_regressors
     end
 end
 
+% Setup spring/counterbalance regressor?
+% for 6-link arm model
+
 % Setup Friction Regressor
 B = repmat({zeros(n_dofs,n_dofs)}, N,1 );
 Bc = repmat({zeros(n_dofs,n_dofs)}, N,1 );
@@ -54,6 +57,8 @@ for i = 1:N
    B{i}  = diag( qd{i} );
    Bc{i} = diag( sign( qd{i} ) );
 end
+
+
 
 % Convert cell arrays to matrices
 tau_stack = cell2mat(tau);
