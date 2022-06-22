@@ -4,7 +4,9 @@ cd(fileInfo.folder);
 
 clear
 close all
-init_path
+% init_path
+addpath(genpath(pwd));
+
 %% Load Data
 load('CheetahSysID.mat');
 model = Cheetah3LegModel();
@@ -79,9 +81,11 @@ tau_train = tau_stack(1:n_dofs*N_train,:);
 
 figure(1); clf;
 color = rand(6,3);
-title('Bounding Ellipses');
+title('Bounding Ellipsoids');
 Cheetah_bound_visualize(obj, Q_bound, color)
-  
+grid on;
+xlabel('x[m]'); ylabel('y[m]'); zlabel('z[m]');
+
   
 %% Conventional System ID with Entropic Regularization
 
