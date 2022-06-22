@@ -4,7 +4,9 @@ cd(fileInfo.folder);
 
 clear
 close all
-% addpath(genpath(pwd));
+addpath(genpath([pwd,'/data']))
+addpath(genpath([pwd,'/utility']))
+addpath(genpath([pwd,'/vis']))
 
 %% Load Data
 load('CheetahSysID.mat');
