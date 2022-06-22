@@ -55,3 +55,4 @@ function Cheetah_bound_visualize(obj, Q, color_)
     view([-140 26]);
     draw_SE3(eye(4,4));
 end
+

@@ -42,7 +42,7 @@ if regenerate_regressors
        if mod(i,100) == 0
            fprintf('%d / %d Regressors Computed\n',i,N);
        end
-       [Y_i, Yrot_i] = RegressorClassical( model, q{i}, qd{i},qdd{i});
+       [Y_i, Yrot_i] = RegressorClassical( model, q{i}, qd{i}, qdd{i});
        Y{i,1} = [Y_i Yrot_i];
     end
 end

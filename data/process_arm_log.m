@@ -48,6 +48,7 @@ qdd = gradient(qdfilt,dt);
 %% save data
 q = qfilt;
 qd = qdfilt;
+% could save as cell arrays like provided Cheetah dataset
 save(output, 't','q','qd','qdd','tau','taufilt');
 
 
