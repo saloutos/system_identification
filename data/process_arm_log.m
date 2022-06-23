@@ -22,6 +22,7 @@ qj = [data.q_BASE, data.q_SP, data.q_SR, data.q_ELBOW, data.q_WP-data.q_ELBOW, 2
 qdj  = [data.qd_BASE, data.qd_SP, data.qd_SR, data.qd_ELBOW, data.qd_WP-data.qd_ELBOW, 2.0*(data.qd_WP+data.qd_WR)];
 tauj = [data.tau_BASE, data.tau_SP, data.tau_SR, data.tau_ELBOW+data.tau_WR-data.tau_WR1, data.tau_WR-data.tau_WR1, 0.5*data.tau_WR1];
 
+% TODO: need to change signs of some DOFs to match model definition!
 
 %% plot everything
 figure; plot(q(:,4)); % why is plotting being weird?
@@ -60,7 +61,8 @@ qddj = gradient(qdjfilt,dt);
 %% save data
 q = qfilt;
 qd = qdfilt;
-% could save as cell arrays like provided Cheetah dataset
+% TODO: could save as cell arrays like provided Cheetah dataset
+% TODO: also save joint-space values?
 save(output, 't','q','qd','qdd','tau','taufilt');
 
 
