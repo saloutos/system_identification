@@ -1,24 +1,22 @@
-function [model, graphics] = Cheetah3LegModel()
+function [model, graphics] = Arm6LinkModel()
 
 % This function creates both the rigid body model struct and a graphics
-% cell array that specifies the cheetah 3 model
+% cell array that specifies the full teleop arm model
 
-% The 0-configuration for the robot is with legs stright down, cheetah
-% pointed along the +x axis of the ICS. 
+% The 0-configuration for the robot is completely vertical with all joint
+% frames / body frames aligned
 % The inertial coordinates have +z up (i.e. gravity = [0 0 -9.81 m/s^2])
 % The body coordinates have +x forward, +y left, +z up
-%
 
-model.gc.point = zeros(3,0);
+model.gc.point = zeros(3,0); % what do these mean?
 model.gc.body = zeros(1,0);
 
-Nb = 6;
+Nb = 12; %12 with WP and WR rotors
 
-%% Nominal Paramters of Cheetah
+%% Nominal arm parameters
 bodyWidth = .256;
 bodyHeight = .200;
 bodyLength = .600;
-
 
 motorRad   = .06;
 legRad     = 0.03;
@@ -28,14 +26,19 @@ lc = bodyWidth/2;
 l1 = .342; % Length of top link
 l2 = .345; % Length of bottom link
 motorWidth = 2*lo;
-                  
 
-%% Legs
-side_sign = 1;
+base_box = []; % all box lengths are [x,y,z]
+shoulder_box = [];
+upper_arm_box = [];
+lower_arm_box = [];
+wrist_box = [];
+gripper_box = []; % represents wrist roll output
 
-Nb = 0;
-side_sign = 1;
-%% Legs
+
+
+
+
+
 
 %% Ab/Ad (Hip Roll)
 Nb = Nb+1;

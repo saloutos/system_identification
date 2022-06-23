@@ -13,9 +13,14 @@ output = "data/example_arm_logs/armlog2_processed_data.mat";
 
 %% pull out q,qd,tau
 t = data.t;
+% motor values
 q = [data.q_BASE, data.q_SP, data.q_SR, data.q_ELBOW, data.q_WP, data.q_WR];
 qd  = [data.qd_BASE, data.qd_SP, data.qd_SR, data.qd_ELBOW, data.qd_WP, data.qd_WR];
 tau = [data.tau_BASE, data.tau_SP, data.tau_SR, data.tau_ELBOW, data.tau_WR, data.tau_WR1]; % two WR columns, first is actually WP and second is actually WR
+% joint values
+qj = [data.q_BASE, data.q_SP, data.q_SR, data.q_ELBOW, data.q_WP-data.q_ELBOW, 2.0*(data.q_WP+data.q_WR)];
+qdj  = [data.qd_BASE, data.qd_SP, data.qd_SR, data.qd_ELBOW, data.qd_WP-data.qd_ELBOW, 2.0*(data.qd_WP+data.qd_WR)];
+tauj = [data.tau_BASE, data.tau_SP, data.tau_SR, data.tau_ELBOW+data.tau_WR-data.tau_WR1, data.tau_WR-data.tau_WR1, 0.5*data.tau_WR1];
 
 
 %% plot everything
@@ -29,7 +34,9 @@ t = t(start_ind:stop_ind)-t(start_ind);
 q = q(start_ind:stop_ind,:);
 qd = qd(start_ind:stop_ind,:);
 tau = tau(start_ind:stop_ind,:);
-
+qj = qj(start_ind:stop_ind,:);
+qdj = qdj(start_ind:stop_ind,:);
+tauj = tauj(start_ind:stop_ind,:);
 
 %% filter q,qd,tau
 
@@ -41,9 +48,14 @@ qfilt = sgolayfilt(q, filt_order, window_size);
 qdfilt = sgolayfilt(qd, filt_order, window_size);
 taufilt = sgolayfilt(tau, filt_order, window_size);
 
+qjfilt = sgolayfilt(qj, filt_order, window_size);
+qdjfilt = sgolayfilt(qdj, filt_order, window_size);
+taujfilt = sgolayfilt(tauj, filt_order, window_size);
+
 %% finite difference to calculate qdd, filter qdd
 dt = mean(diff(t));
 qdd = gradient(qdfilt,dt);
+qddj = gradient(qdjfilt,dt);
 
 %% save data
 q = qfilt;
