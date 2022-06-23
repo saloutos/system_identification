@@ -7,6 +7,7 @@ import urdf2casadi.Utils.modelExtractionFunctions.*
 % creating model structure for spatial_v2 (smds)
 [smds, model] = extractSystemModel('SingleArm_URDF.urdf');
 
+
 % creating rigidBodyTree
 %robot = importrobot('SingleArm_URDF.urdf');
 
