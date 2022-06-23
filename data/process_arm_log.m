@@ -59,11 +59,30 @@ qdd = gradient(qdfilt,dt);
 qddj = gradient(qdjfilt,dt);
 
 %% save data
-q = qfilt;
-qd = qdfilt;
-% TODO: could save as cell arrays like provided Cheetah dataset
-% TODO: also save joint-space values?
-save(output, 't','q','qd','qdd','tau','taufilt');
+
+n_samps = length(t);
+q_c = cell(n_samps,1);
+qd_c = cell(n_samps,1);
+qdd_c = cell(n_samps,1);
+tau_c = cell(n_samps,1);
+taufilt_c = cell(n_samps,1);
+
+for ii=1:n_samps
+    q_c{ii} = qjfilt(ii,:)';
+    qd_c{ii} = qdjfilt(ii,:)';
+    qdd_c{ii} = qddj(ii,:)';
+    tau_c{ii} = tauj(ii,:)';
+    taufilt_c{ii} = taujfilt(ii,:)';
+end
+
+% reset variable names
+q = q_c;
+qd = qd_c;
+qdd = qdd_c;
+tau = tau_c;
+tauf = taufilt_c;
+
+save(output,'t','q','qd','qdd','tau','tauf');
 
 
 
