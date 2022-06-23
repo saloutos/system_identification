@@ -228,7 +228,7 @@ function plotTorquePredictions(figNum, name, t, tau_actual , tau_predict)
     plot(t,tau_actual(:,2)); hold on;
     plot(t,tau_predict(:,2),'r','LineWidth',1.5)
     ylabel('Sh. Pitch Torque (Nm)');
-
+    
     subplot(325)
     plot(t,tau_actual(:,3)); hold on;
     plot(t,tau_predict(:,3),'r','LineWidth',1.5)
@@ -263,7 +263,7 @@ function x = cb_torque_coef(q)
     x_s1 = -a*sin(joint_angle);
     y_s1 = a*cos(joint_angle);
     s1 = sqrt(x_s1^2 + (y_s1-b)^2);
-    spring_angle = acos(a^2 + s1^2 - b^2)/(2*a*s1);
+    spring_angle = acos((a^2 + s1^2 - b^2)/(2*a*s1));
     x = (l-s1) * a * 0.001 * sin(spring_angle);
     if (joint_angle>0)
         x = -x;
