@@ -49,7 +49,9 @@ function Arm6Link_ellipsoid_visualize(obj, Phi, color_)
 
       plot_inertiatensor(T, I{i}, 0.45, color(i,:));
       plot_inertiatensor(Trot, Irot{i}, 0.45, color_rot(i,:));
-
+        
+      draw_SE3(T);
+      
 %       T = inv( AdjointToSE3( X0_CAD{i} ) );
 
       if i>0 %1

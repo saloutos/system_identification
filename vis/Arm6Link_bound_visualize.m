@@ -45,6 +45,10 @@ function Arm6Link_bound_visualize(obj, Q, color_)
 
       plot_bounding_ellipsoid(T, Q{i}, .45, color(i,:))
       plot_bounding_ellipsoid(Trot, Q{i+NB}, .45, color_rot(i,:))
+      
+      draw_SE3(T);
+
+        
 
 %       T = inv( AdjointToSE3( X0_CAD{i} ) );
 

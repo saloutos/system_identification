@@ -73,7 +73,6 @@ B_stack = cell2mat(B);
 Bc_stack = cell2mat(Bc);
 Ks_stack = cell2mat(Ks);
 
-% TODO: include spring regressor here
 Y_total = [Y_stack B_stack Bc_stack Ks_stack];
 
 % Optional: Select subset for training data
@@ -122,7 +121,6 @@ cvx_begin
     variable params(10,n_bodies)  % inertial params of links / rotors (units vary)
     variable b(n_dofs)            % viscous friction coefficient (Nm / (rad/s) 
     variable bc(n_dofs)           % coulomb friction coefficient (Nm) 
-    % TODO: add variable for spring constant...does this initialize a scalar?
     variable ks                   % efffective spring contstance (N/mm)
     
     variable J(4,4,n_bodies) semidefinite % pseudo-inertia for each body
@@ -132,7 +130,6 @@ cvx_begin
     
     % Training error
     e_train = Y_train*params(:) + B_train*b + Bc_train*bc + Ks_train*ks - tau_train;
-    % TODO: add variable for spring constant
 
     % Entropic (i.e., bregman) divergence between psuedo-inertias
     for i=1:n_bodies
@@ -160,15 +157,14 @@ cvx_begin
             end
         end
         % TODO: add constraint for positive spring constant, positive friction coefficients?
-        ks >= 0;
+        % ks >= 0;
         
 
 cvx_end
 
-%%
+%% Plot results
 tau_predict_entropic = reshape(Y_stack*params(:) + B_stack*b + Bc_stack*bc + Ks_stack*ks, n_dofs, N)';
 plotTorquePredictions(2,'Convex, Entropic Regularized',t,tau_mat, tau_predict_entropic);
-% TODO: add variable for spring constant
 
 % Visualize inertia and CAD
 color = rand(12,3);
