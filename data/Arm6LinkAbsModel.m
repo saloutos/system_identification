@@ -234,7 +234,7 @@ model.parent(Nb) = Nb-1;
 
 model.joint{Nb} = revoluteJointWithRotor();
 model.joint{Nb}.jointAxis = 'z';
-model.joint{Nb}.rotorAxis = 'z';
+model.joint{Nb}.rotorAxis = 'y';
 
 model.Xtree{Nb}(1:6,:) = plux(eye(3), joint_offsets(6,:)');
 model.Xtree{Nb}(7:12,:) = plux(eye(3), rotor_offsets(6,:)');

@@ -16,18 +16,18 @@ load('armlog2_processed_data.mat');
 model = Arm6LinkAbsModel();
 
 %% Load Object files
-disp("loading CAD mesh files (this may take a while)")
-obj = cell(7,1);
-
-obj{1} = readObj('Link1_ShoulderYaw.obj');
-obj{2} = readObj('Link2_ShoulderPitch.obj');
-obj{3} = readObj('Link3_ShoulderRoll.obj');
-obj{4} = readObj('Link4_Elbow.obj');
-obj{5} = readObj('Link5_WristPitch.obj');
-obj{6} = readObj('Link6_WristRoll_WithGripper.obj');
-obj{7} = readObj('Link0_BaseLink.obj');
-
-disp("loaded CAD mesh files")
+% disp("loading CAD mesh files (this may take a while)")
+% obj = cell(7,1);
+% 
+% obj{1} = readObj('Link1_ShoulderYaw.obj');
+% obj{2} = readObj('Link2_ShoulderPitch.obj');
+% obj{3} = readObj('Link3_ShoulderRoll.obj');
+% obj{4} = readObj('Link4_Elbow.obj');
+% obj{5} = readObj('Link5_WristPitch.obj');
+% obj{6} = readObj('Link6_WristRoll_WithGripper.obj');
+% obj{7} = readObj('Link0_BaseLink.obj');
+% 
+% disp("loaded CAD mesh files")
 
 %% Data Setup
 N = length(q);
