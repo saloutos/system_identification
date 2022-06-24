@@ -34,6 +34,8 @@ N = length(q);
 n_links = 6; % # of conventional links
 n_rotors= 6; % # of rigid-bodies modeled for rotors
 n_bodies= n_links+n_rotors;
+% TODO: could get these from the model
+
 n_dofs  = length(qd{1});
 
 % Time vector is saved in dataset!
@@ -46,8 +48,9 @@ if regenerate_regressors
        if mod(i,100) == 0
            fprintf('%d / %d Regressors Computed\n',i,N);
        end
-       [Y_i, Yrot_i] = RegressorClassical( model, q{i}, qd{i}, qdd{i});
-       Y{i,1} = [Y_i Yrot_i];
+%        [Y_i, Yrot_i] = RegressorClassical( model, q{i}, qd{i}, qdd{i});
+%        Y{i,1} = [Y_i Yrot_i];
+        Y{i,1} = RegressorClassical(model, q{i}, qd{i}, qdd{i});
     end
 end
 
