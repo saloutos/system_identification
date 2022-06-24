@@ -13,7 +13,7 @@ addpath(genpath([pwd,'/vis']))
 % TODO: load correct data here, make sure formats are correct too
 load('armlog2_processed_data.mat');
 
-model = Arm6LinkModel();
+model = Arm6LinkAbsModel();
 
 %% Load Object files
 disp("loading CAD mesh files (this may take a while)")
@@ -93,12 +93,12 @@ Ks_train = Ks_stack(1:n_dofs*N_train,:);
 [pi_prior, ... % Prior parameters
     J_prior, ... % Prior Pseudo-inertias
       Q_bound] ... % Bounding Ellipsoids S={ x | [x ; 1]'*Q*[x ; 1] >= 0 }
-      = Arm6Link_prior_inertia_CAD();
+      = Arm6LinkAbs_prior_inertia_CAD();
 
 figure(1); clf;
 color = rand(12,3);
 title('Bounding Ellipsoids');
-Arm6Link_bound_visualize(obj, Q_bound, color)
+Arm6LinkAbs_bound_visualize(obj, Q_bound, color)
 grid on;
 xlabel('x[m]'); ylabel('y[m]'); zlabel('z[m]');
 
